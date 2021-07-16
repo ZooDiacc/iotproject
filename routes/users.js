@@ -17,21 +17,21 @@ router.get('/register', forwardAuthenticated, (req, res) => res.render('register
 
 // Register
 router.post('/register', (req, res) => {
-    const { name, lastName, email, password, comfirmPassword } = req.body;
+    const { name, lastName, email, password, confirmPassword } = req.body;
     let errors = [];
 
-    if (!name || !lastName ||!email || !password || !comfirmPassword) {
+    if (!name || !lastName ||!email || !password || !confirmPassword) {
         errors.push({ msg: 'Please enter all fields' });
     }
 
-    if (password != comfirmPassword) {
+    if (password != confirmPassword) {
         errors.push({ msg: 'Passwords do not match' });
     }
     if (name.length < 2) {
-        errors.push({ msg: 'Password must be at least 6 characters' });
+        errors.push({ msg: 'name must be at least 6 characters' });
     }
      if (lastName.length < 2) {
-        errors.push({ msg: 'Password must be at least 6 characters' });
+        errors.push({ msg: 'lastName must be at least 6 characters' });
     }
 
 
@@ -46,7 +46,7 @@ router.post('/register', (req, res) => {
             lastName,
             email,
             password,
-            comfirmPassword
+            confirmPassword
         });
     } else {
         User.findOne({ email: email }).then(user => {
@@ -58,7 +58,7 @@ router.post('/register', (req, res) => {
                     lastName,
                     email,
                     password,
-                    comfirmPassword
+                    confirmPassword
                 });
             } else {
                 const newUser = new User({
