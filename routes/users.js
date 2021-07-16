@@ -111,7 +111,7 @@ router.post('/login', async(req, res, next) => {
 
                             res.status(200).json({
                                 name: user.name,
-                                lastName: user.lastName,
+                                lastName: "user.lastName",
                                 email: user.email,
                                 token: newtoken
                             });
