@@ -104,14 +104,14 @@ router.post('/login', async(req, res, next) => {
 
                         if (result) {
 
-                            const newtoken = jwt.sign({ name: user.name,lastName:user.lastName,email: user.email }, "ELYAS", { expiresIn: 86400 })
+                            const newtoken = jwt.sign({ name: user.name,lastName: user.lastName, email: user.email }, "ELYAS", { expiresIn: 86400 })
                             const verify = jwt.verify(newtoken, "ELYAS");
                             console.log("CRYPTé", newtoken)
                             console.log("no crypté", verify)
 
                             res.status(200).json({
                                 name: user.name,
-                                lastName:user.lastName,
+                                lastName: user.lastName,
                                 email: user.email,
                                 token: newtoken
                             });
