@@ -1,0 +1,4 @@
+{
+    "mongoURI": "mongodb+srv://zoodiac:<freebox1>@cluster0.lnm6j.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+    "baseUrl": "https://shorty-api-shortlink.herokuapp.com/"
+}

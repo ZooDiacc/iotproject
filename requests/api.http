@@ -1,0 +1,6 @@
+POST http://shorty-api-shortlink.herokuapp.com/api/url/shorten
+Content-Type: application/json
+
+{
+  "longUrl": "https://manganelo.com/manga/lr922610"
+}
