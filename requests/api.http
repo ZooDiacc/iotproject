@@ -1,6 +1,7 @@
-POST http://shorty-api-shortlink.herokuapp.com/api/url/shorten
+POST https://iot-project-hetic.herokuapp.com/
 Content-Type: application/json
 
 {
   "longUrl": "https://manganelo.com/manga/lr922610"
+
 }
