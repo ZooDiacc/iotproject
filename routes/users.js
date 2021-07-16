@@ -5,10 +5,6 @@ const passport = require('passport');
 const jwt = require('jsonwebtoken');
 
 
-
-
-
-
 // Load User model
 const User = require('../models/user');
 const { forwardAuthenticated } = require('../config/auth');
@@ -21,10 +17,10 @@ router.get('/register', forwardAuthenticated, (req, res) => res.render('register
 
 // Register
 router.post('/register', (req, res) => {
-    const { name, email, password, comfirmPassword } = req.body;
+    const { name, lastName, email, password, comfirmPassword } = req.body;
     let errors = [];
 
-    if (!name || !email || !password || !comfirmPassword) {
+    if (!name || !lastName ||!email || !password || !comfirmPassword) {
         errors.push({ msg: 'Please enter all fields' });
     }
 
