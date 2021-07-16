@@ -1,9 +1,11 @@
 const express = require('express');
 const connectDB = require('./config/db');
 const cors = require('cors');
+const app = express();
 
+app.use(cors())
 
-router.get("/", (req, res) => {
+app.get("/", (req, res) => {
     res.setHeader("Access-Control-Allow-Origin", "*")
     res.setHeader("Access-Control-Allow-Credentials", "true");
     res.setHeader("Access-Control-Max-Age", "1800");
@@ -11,7 +13,7 @@ router.get("/", (req, res) => {
     res.setHeader("Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS");
 });
 
-const app = express();
+
 
 // Connect to database
 connectDB();
