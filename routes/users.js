@@ -52,14 +52,14 @@ router.post('/register', (req, res) => {
         User.findOne({ email: email }).then(user => {
             if (user) {
                 errors.push({ msg: 'Email already exists' });
-                res.render('register', {
-                    errors,
-                    name,
-                    lastName,
-                    email,
-                    password,
-                    confirmPassword
-                });
+                // res.render('register', {
+                //     errors,
+                //     name,
+                //     lastName,
+                //     email,
+                //     password,
+                
+                // });
             } else {
                 const newUser = new User({
                     name,
@@ -104,7 +104,7 @@ router.post('/login', async(req, res, next) => {
 
                         if (result) {
 
-                            const newtoken = jwt.sign({ name: user.name,lastName: user.lastName, email: user.email }, "ELYAS", { expiresIn: 86400 })
+                            const newtoken = jwt.sign({ name: user.name, lastName: user.lastName, email: user.email }, "ELYAS", { expiresIn: 86400 })
                             const verify = jwt.verify(newtoken, "ELYAS");
                             console.log("CRYPTé", newtoken)
                             console.log("no crypté", verify)
