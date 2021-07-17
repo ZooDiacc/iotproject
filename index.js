@@ -3,9 +3,6 @@ const connectDB = require('./config/db');
 const cors = require('cors');
 const app = express();
 
-
-
-// Connect to database
 app.use(cors())
 
 app.get("/", (req, res) => {
@@ -16,8 +13,9 @@ app.get("/", (req, res) => {
     res.setHeader("Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS");
 });
 
+// Connect to database
 connectDB();
-
+app.use(cors())
 app.use(express.json());
 
 // Define Routes

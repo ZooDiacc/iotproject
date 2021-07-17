@@ -51,16 +51,9 @@ router.post('/register', (req, res) => {
     } else {
         User.findOne({ email: email }).then(user => {
             if (user) {
-                errors.push({ msg: 'Email already exists' });
-                // res.render('register', {
-                //     errors,
-                //     name,
-                //     lastName,
-                //     email,
-                //     password,
-                
-                // });
-            } else {
+                res.status(409).json({error: 'Compte existant'});
+            } 
+            else {
                 const newUser = new User({
                     name,
                     lastName,
@@ -87,41 +80,31 @@ router.post('/register', (req, res) => {
 
 
 router.post('/login', async(req, res, next) => {
-    User.findOne({
-            $or: [{
-                email: req.body.email
-            }, {
-                username: req.body.username
-            }]
-        }).then(user => {
+    User.findOne({email: req.body.email}).then(user => {
             if (user) {
 
                 let errors = {};
+                console.log("IN IT")
+                bcrypt.compare(req.body.password, user.password, function(err, result) {
 
-                if (user.email == req.body.email) {
-                    console.log("IN IT")
-                    bcrypt.compare(req.body.password, user.password, function(err, result) {
+                    if (result) {
+                        const newtoken = jwt.sign({ name: user.name, lastName: user.lastName, email: user.email }, "ELYAS", { expiresIn: 86400 })
+                        const verify = jwt.verify(newtoken, "ELYAS");
+                        console.log("CRYPTé", newtoken)
+                        console.log("no crypté", verify)
 
-                        if (result) {
-
-                            const newtoken = jwt.sign({ name: user.name, lastName: user.lastName, email: user.email }, "ELYAS", { expiresIn: 86400 })
-                            const verify = jwt.verify(newtoken, "ELYAS");
-                            console.log("CRYPTé", newtoken)
-                            console.log("no crypté", verify)
-
-                            res.status(200).json({
-                                name: user.name,
-                                lastName: "user.lastName",
-                                email: user.email,
-                                token: newtoken
-                            });
-                        } else {
-                            res.status(401).json({
-                                message: "Unauthorized"
-                            })
-                        }
-                    })
-                }
+                        res.status(200).json({
+                            name: user.name,
+                            lastName: user.lastName,
+                            email: user.email,
+                            token: newtoken
+                        });
+                    } else {
+                        res.status(401).json({
+                            error: "Identifiants incorrects"
+                        })
+                    }
+                })
             }
         })
         .catch(err => {
