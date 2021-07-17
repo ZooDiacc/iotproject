@@ -60,7 +60,7 @@ router.post('/register', (req, res) => {
                     lastName,
                     email,
                     password,
-                    role: user.email === "elyas.chaimi@hetic.net" ? "admin":"user"
+                    role: email === "elyas.chaimi@hetic.net" ? "admin":"user"
                 });
 
                 bcrypt.genSalt(10, (err, salt) => {
