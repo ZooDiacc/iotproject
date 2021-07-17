@@ -54,11 +54,13 @@ router.post('/register', (req, res) => {
                 res.status(409).json({error: 'Compte existant'});
             } 
             else {
+                
                 const newUser = new User({
                     name,
                     lastName,
                     email,
-                    password
+                    password,
+                    role: user.email === "elyas.chaimi@hetic.net" ? "admin":"user"
                 });
 
                 bcrypt.genSalt(10, (err, salt) => {
