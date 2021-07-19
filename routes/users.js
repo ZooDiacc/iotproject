@@ -77,7 +77,6 @@ router.post('/register', (req, res) => {
                             name: user.name,
                             lastName: user.lastName,
                             email: user.email,
-                            token: newtoken
                         })
                 });
             } 
