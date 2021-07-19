@@ -24,6 +24,10 @@ const UserSchema = new mongoose.Schema({
     role: {
         type: String,
         require: true 
+    },
+    laundry: {
+        type: Object,
+        require :true
     }
     
 });

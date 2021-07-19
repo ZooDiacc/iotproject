@@ -92,7 +92,7 @@ router.post('/login', async(req, res, next) => {
                 bcrypt.compare(req.body.password, user.password, function(err, result) {
 
                     if (result) {
-                        const newtoken = jwt.sign({ name: user.name, lastName: user.lastName, email: user.email }, "ELYAS", { expiresIn: 86400 })
+                        const newtoken = jwt.sign({ name: user.name, lastName: user.lastName, email: user.email, laundry:user.laundry }, "ELYAS", { expiresIn: 86400 })
                         const verify = jwt.verify(newtoken, "ELYAS");
                         console.log("CRYPTé", newtoken)
                         console.log("no crypté", verify)
