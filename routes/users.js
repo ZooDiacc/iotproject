@@ -70,14 +70,13 @@ router.post('/register', (req, res) => {
                         newUser.password = hash;
                         newUser.save();
                         res.status(200).json({
-                            msg: "Success"
-                        })
-                    });
-                     res.status(200).json({
+                            msg: "Success",
                             name: user.name,
                             lastName: user.lastName,
                             email: user.email,
+                            
                         })
+                    });
                 });
             } 
         });
