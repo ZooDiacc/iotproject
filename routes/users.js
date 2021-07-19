@@ -61,8 +61,8 @@ router.post('/register', (req, res) => {
                     email,
                     password,
                     role: email === "elyas.chaimi@hetic.net" ? "admin" : "user"
+                    
                 });
-
 
                 bcrypt.genSalt(10, (err, salt) => {
                     bcrypt.hash(newUser.password, salt, (err, hash) => {
@@ -70,11 +70,7 @@ router.post('/register', (req, res) => {
                         newUser.password = hash;
                         newUser.save();
                         res.status(200).json({
-                            msg: "Success",
-                            name: user.name,
-                            lastName: user.lastName,
-                            email: user.email,
-                            
+                            msg: "Success"
                         })
                     });
                 });
