@@ -60,6 +60,7 @@ router.post('/register', (req, res) => {
                     lastName,
                     email,
                     password,
+                    laundry,
                     role: email === "elyas.chaimi@hetic.net" ? "admin" : "user",
                     
                 });
