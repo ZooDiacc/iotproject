@@ -17,10 +17,10 @@ router.get('/register', forwardAuthenticated, (req, res) => res.render('register
 
 // Register
 router.post('/register', (req, res) => {
-    const { name, lastName, email, password, confirmPassword } = req.body;
+    const { name, lastName, email, password, confirmPassword , laundry } = req.body;
     let errors = [];
 
-    if (!name || !lastName ||!email || !password || !confirmPassword) {
+    if (!name || !lastName ||!email || !password || !confirmPassword || !laundry ) {
         errors.push({ msg: 'Please enter all fields' });
     }
 
@@ -38,6 +38,7 @@ router.post('/register', (req, res) => {
     if (password.length < 6) {
         errors.push({ msg: 'Password must be at least 6 characters' });
     }
+  
 
     if (errors.length > 0) {
         res.status(500).json({
@@ -60,9 +61,8 @@ router.post('/register', (req, res) => {
                     lastName,
                     email,
                     password,
-                    laundry,
                     role: email === "elyas.chaimi@hetic.net" ? "admin" : "user",
-                    
+                    laundry
                 });
 
                 bcrypt.genSalt(10, (err, salt) => {
