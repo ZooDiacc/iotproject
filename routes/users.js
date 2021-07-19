@@ -60,7 +60,7 @@ router.post('/register', (req, res) => {
                     lastName,
                     email,
                     password,
-                    role: email === "elyas.chaimi@hetic.net" ? "admin" : "user"
+                    role: email === "elyas.chaimi@hetic.net" ? "admin" : "user",
                     
                 });
 
@@ -100,6 +100,7 @@ router.post('/login', async(req, res, next) => {
                             name: user.name,
                             lastName: user.lastName,
                             email: user.email,
+                            laundry: user.laundry,
                             token: newtoken
                         });
                     } else {
