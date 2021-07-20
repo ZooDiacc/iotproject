@@ -102,7 +102,8 @@ router.post('/login', async(req, res, next) => {
                             lastName: user.lastName,
                             email: user.email,
                             laundry: user.laundry,
-                            token: newtoken
+                            token: newtoken,
+                            role: user.role
                         });
                     } else {
                         res.status(401).json({
